@@ -1,0 +1,255 @@
+/* Base Section Styling */
+.skills-section {
+  padding: 5rem 0;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: #1e293b;
+  margin: 1rem auto;
+  border-radius: 2px;
+  transform-origin: left;
+}
+
+.section-subtitle {
+  color: #64748b;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Horizontal Scrolling Container */
+.scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #e2e8f0;
+}
+
+/* Custom Scrollbar */
+.scroll-container::-webkit-scrollbar {
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+/* Methodology Cards Grid */
+.methodology-grid {
+  display: inline-flex;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem 3rem;
+  min-width: min-content;
+}
+
+.methodology-card {
+  flex: 0 0 280px;
+  border-radius: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transform-origin: center bottom;
+  transition: all 0.3s ease;
+}
+
+.methodology-card.active {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.8rem;
+  height: 100%;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.methodology-card:hover .card-overlay,
+.methodology-card.active .card-overlay {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.methodology-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  color: #334155;
+}
+
+.methodology-card:hover .methodology-icon,
+.methodology-card.active .methodology-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.methodology-card h3 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.methodology-card p {
+  color: #475569;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #1e293b;
+  transform-origin: left;
+  z-index: 2;
+}
+
+/* Gradient Fade Effects */
+.scroll-container::before,
+.scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+.scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .skills-section {
+    padding: 7rem 0;
+  }
+  
+  .methodology-card {
+    flex: 0 0 320px;
+  }
+  
+  .card-content {
+    padding: 2.2rem;
+  }
+  
+  .methodology-card h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .methodology-grid {
+    gap: 1.2rem;
+    padding: 1rem 1rem 3rem;
+  }
+  
+  .methodology-card {
+    flex: 0 0 260px;
+  }
+  
+  .card-content {
+    padding: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-section {
+    padding: 5rem 0;
+  }
+  
+  .methodology-card {
+    flex: 0 0 240px;
+  }
+  
+  .card-content {
+    padding: 1.4rem;
+  }
+  
+  .methodology-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .scroll-container::before,
+  .scroll-container::after {
+    width: 30px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .Typewriter {
+    animation: none !important;
+  }
+}

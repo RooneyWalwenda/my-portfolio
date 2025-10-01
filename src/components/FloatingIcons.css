@@ -1,0 +1,44 @@
+.floating-icons {
+  position: fixed;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: visible;
+}
+
+.floating-icon {
+  position: absolute;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.05));
+  user-select: none;
+  animation-name: floatRandom;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+/* Faster and more scattered float motion */
+@keyframes floatRandom {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(40px, 80px) rotate(8deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50px, 160px) rotate(-6deg);
+    opacity: 0.35;
+  }
+  75% {
+    transform: translate(30px, 240px) rotate(10deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-40px, 320px) rotate(-10deg);
+    opacity: 0.25;
+  }
+}

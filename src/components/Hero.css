@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #e0e7ff;
+  --text-dark: #111827;
+  --text-medium: #4a5568;
+  --text-light: #6b7280;
+  --bg-gradient: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Video Background Styles */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: grayscale(80%) brightness(0.7);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg, 
+    rgba(245, 247, 250, 0.8) 0%, 
+    rgba(195, 207, 226, 0.7) 100%
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Hero Section Styles */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  padding-top: 80px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 600px;
+  animation: fadeInUp 0.8s 0.2s ease-out forwards;
+  opacity: 0;
+}
+
+.hero-text {
+  margin-bottom: 2.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-greeting {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: var(--text-medium);
+  margin-bottom: 0.5rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.name-gradient {
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.name-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.hero-title:hover .name-gradient::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--text-medium);
+  font-weight: 400;
+}
+
+/* Advanced Typewriter Effect */
+.typewriter-container {
+  margin-bottom: 2rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.typewriter-prefix {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.typewriter-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.typewriter-text {
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.typewriter-cursor {
+  opacity: 0;
+  color: var(--primary);
+  font-weight: 400;
+  margin-left: 2px;
+  transition: opacity 0.1s ease;
+}
+
+.typewriter-cursor.visible {
+  opacity: 1;
+}
+
+/* Enhanced Button Styles */
+.hero-cta {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  position: relative;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition-slow);
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-text.pop {
+  transform: translateY(-3px);
+}
+
+.btn-icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-icon.animate {
+  transform: rotate(10deg);
+}
+
+.btn-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.btn:hover .btn-hover-effect {
+  transform: translateX(0);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: rgba(37, 99, 235, 0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+}
+
+/* Tech Stack Badges */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.tech-badge {
+  position: relative;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--delay) ease-out forwards;
+}
+
+.tech-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Image Styles */
+.hero-image {
+  width: clamp(300px, 40vw, 450px);
+  height: clamp(300px, 40vw, 450px);
+  position: relative;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+}
+
+.scroll-indicator span {
+  font-size: 0.8rem;
+  color: var(--text-medium);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.mouse {
+  width: 2rem;
+  height: 3rem;
+  border: 2px solid var(--text-medium);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.wheel {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--text-medium);
+  border-radius: 50%;
+  animation: scrollWheel 2s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0.5rem); opacity: 0; }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-title {
+    align-items: center;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+  
+  .tech-stack {
+    justify-content: center;
+  }
+  
+  .hero-image {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1.5rem;
+    min-height: calc(100vh - 70px);
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .typewriter-container {
+    justify-content: center;
+  }
+
+  .background-video {
+    opacity: 0.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .tech-stack {
+    gap: 0.5rem;
+  }
+  
+  .tech-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .typewriter-prefix {
+    font-size: 0.9rem;
+  }
+  
+  .typewriter-text {
+    font-size: 0.9rem;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
