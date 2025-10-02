@@ -37,7 +37,7 @@ const ChatbotWidget = () => {
 
   // Format links and contact info
   const formatResponse = (text) => {
-    // Make links clickable and blue
+    // Make portfolio links clickable and blue
     let formatted = text.replace(
       /(https?:\/\/[^\s]+)/g, 
       '<a href="$1" style="color: #2563eb; text-decoration: underline;" target="_blank" rel="noopener noreferrer">$1</a>'
@@ -46,6 +46,11 @@ const ChatbotWidget = () => {
     formatted = formatted.replace(
       /(walwendarooney@gmail.com|\+254743485063)/g,
       '<span style="color: #2563eb; font-weight: 500;">$1</span>'
+    );
+    // Replace WhatsApp placeholder with clickable link
+    formatted = formatted.replace(
+      /let's link on whatsapp!/gi,
+      '<a href="https://api.whatsapp.com/send/?phone=254743485063&text=Hello+Rooney%2C+let%27s+connect%21&type=phone_number&app_absent=0" style="color: #25D366; font-weight: 600; text-decoration: underline;" target="_blank" rel="noopener noreferrer">let\'s link on WhatsApp!</a>'
     );
     return { __html: formatted };
   };
@@ -113,11 +118,11 @@ const ChatbotWidget = () => {
       
       Rules:
       1. When asked about projects/portfolio, respond: "Check my portfolio: https://www.winstec.me"
-      2. For contact requests: "Email: walwendarooney@gmail.com | Phone: +254743485063"
-      3. When asked "Who is Rooney?": "Software developer & founder of Winstream Solutions Which is still work in progress will be available soon. Portfolio: https://www.winstec.me"
+      2. For contact requests: "Email: walwendarooney@gmail.com | Phone: +254743485063 or let's link on whatsapp!"
+      3. When asked "Who is Rooney?": "Software developer & founder of Winstream Solutions. Portfolio: https://www.winstec.me"
       4. Keep responses concise and professional
       5. Never refer to Rooney as "they" - use "he/him"
-      6. Answer questions on Javaspringboot, React, MySql, Docker and any other.
+      6. Answer questions on Javaspringboot, React, MySql, Docker, also profficient in Figma and generative AI concepts(Jac) and any other.
       7. Rooney is a full stack developer with key insight on backend solutions but also frontend profficient
       8. When asked who developed or built you say: "I am an AI model providing assistance and here specifically on software development"
       9. Answer questions not related to software development gracefully by diverting them to the main topic software development!`;
@@ -162,7 +167,7 @@ const ChatbotWidget = () => {
   return (
     <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
       <button className="chat-toggle" onClick={toggleChat} aria-label="Toggle Chat">
-        {isOpen ? '✕' : '💬'} <span className="chat-label">{isOpen ? 'Close' : 'Ask Me!'}</span>
+        {isOpen ? '✕' : '💬'} <span className="chat-label">{isOpen ? 'Close' : 'Get Quick Info!'}</span>
       </button>
 
       {isOpen && (
