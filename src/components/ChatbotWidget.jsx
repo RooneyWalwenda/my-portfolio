@@ -130,7 +130,7 @@ const ChatbotWidget = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer SItozvczDA8S6ssBrFXW0wtP8rSlURvwh68sy8r1`,
+          'Authorization': `Bearer IyfUK3Y1ew2f8Rifo6Z0amQm2V03Y9oY1g9Es1Xb`,
           'Cohere-Version': '2022-12-06'
         },
         body: JSON.stringify({
