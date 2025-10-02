@@ -98,11 +98,12 @@ const ChatbotWidget = () => {
       const newMessages = [...messages, userMessage];
       setMessages(newMessages);
 
+      // Build conversation history for the prompt
       const conversationHistory = messages
         .map(msg => `${msg.sender === 'user' ? 'You' : 'Assistant'}: ${msg.text}`)
         .join('\n');
 
-      const prompt = `You're Rooney Walwenda's portfolio assistant. Keep responses short (1-2 sentences max).
+      const systemPrompt = `You're Rooney Walwenda's portfolio assistant. Keep responses short (1-2 sentences max).
       
       Key Info:
       - Portfolio: https://www.winstec.me
@@ -118,34 +119,27 @@ const ChatbotWidget = () => {
       5. Never refer to Rooney as "they" - use "he/him"
       6. Answer questions on Javaspringboot, React, MySql, Docker and any other.
       7. Rooney is a full stack developer with key insight on backend solutions but also frontend profficient
-      8. When asked  who developed or built you say  I am an AI model providing assistance and here specifically on software development
-      9. Answer questions not related to software development gracefully by diverting them to the main topic software development!
-      Conversation history:
-      ${conversationHistory}
-      
-      You: ${userMessage.text}
-      Assistant:`;
+      8. When asked who developed or built you say: "I am an AI model providing assistance and here specifically on software development"
+      9. Answer questions not related to software development gracefully by diverting them to the main topic software development!`;
 
-      const response = await fetch('https://api.cohere.ai/v1/generate', {
+      const response = await fetch('https://api.cohere.ai/v1/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer IyfUK3Y1ew2f8Rifo6Z0amQm2V03Y9oY1g9Es1Xb`,
-          'Cohere-Version': '2022-12-06'
         },
         body: JSON.stringify({
-          model: 'command',
-          prompt: prompt,
+          model: 'command-xlarge-nightly',
+          message: `${systemPrompt}\n\nConversation history:\n${conversationHistory}\n\nYou: ${userMessage.text}`,
           max_tokens: 150, // Shorter responses
           temperature: 0.7,
-          stop_sequences: ['You:']
         })
       });
 
       if (!response.ok) throw new Error(`Cohere API error: ${response.status}`);
 
       const data = await response.json();
-      const botReply = data.generations[0].text.trim();
+      const botReply = data.text.trim();
 
       setMessages(prev => [...prev, { 
         text: botReply, 
