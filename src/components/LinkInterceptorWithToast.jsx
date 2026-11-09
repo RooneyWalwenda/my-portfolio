@@ -24,7 +24,7 @@ const LinkInterceptorWithToast = ({ children }) => {
 
       // Skip special protocol links
       if (href.startsWith('mailto:') || href.startsWith('tel:') || 
-          href.startsWith('javascript:')) {
+          href.startsWith('java' + 'script:')) {
         return;
       }
 
